@@ -4,14 +4,14 @@ import 'events.dart';
 import 'championship.dart';
 import 'profile.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class NavBar extends StatefulWidget {
+  const NavBar({super.key});
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _NavBarState createState() => _NavBarState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
 
   static const List<Widget> _pages = [
