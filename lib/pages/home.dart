@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'events.dart'; // Import the Events page
+import 'championship.dart'; // Import the Championship page
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,9 +21,9 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.black,
       body: ListView(
         padding: const EdgeInsets.all(8.0),
-        children: const [
+        children: [
           // First Card
-          Card(
+          const Card(
             color: Color.fromARGB(255, 29, 29, 29),
             child: SizedBox(
               height: 245.0,
@@ -38,19 +40,39 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          // Upcoming Race Text with increased top margin
+          // Upcoming Race Row
           Padding(
-            padding:
-                EdgeInsets.only(top: 24.0, bottom: 8.0), // Increased top margin
-            child: Text(
-              'Upcoming Race',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+            padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Upcoming Race',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EventsPage()),
+                    );
+                  },
+                  child: const Text(
+                    'See more',
+                    style: TextStyle(
+                        color: Color(0xFFBFAF00), // Slightly dark yellow
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ),
-          Card(
+          const Card(
             color: Color.fromARGB(255, 29, 29, 29),
             child: SizedBox(
               height: 245.0,
@@ -67,19 +89,39 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          // Standings Text with increased top margin
+          // Standings Row
           Padding(
-            padding:
-                EdgeInsets.only(top: 24.0, bottom: 8.0), // Increased top margin
-            child: Text(
-              'Standings',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+            padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Standings',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChampionshipPage()),
+                    );
+                  },
+                  child: const Text(
+                    'See more',
+                    style: TextStyle(
+                        color: Color(0xFFBFAF00), // Slightly dark yellow
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ),
-          Card(
+          const Card(
             color: Color.fromARGB(255, 29, 29, 29),
             child: SizedBox(
               height: 245.0,
