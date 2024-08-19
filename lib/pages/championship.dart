@@ -17,12 +17,14 @@ class ChampionshipPage extends StatelessWidget {
             pos: '01',
             pts: '40',
           ),
+          SizedBox(height: 8.0), // Add space between cards
           CustomCard(
             firstName: 'Max',
             lastName: 'Verstappen',
             pos: '02',
             pts: '38',
           ),
+          SizedBox(height: 8.0), // Add space between cards
           CustomCard(
             firstName: 'Lewis',
             lastName: 'Hamilton',
@@ -48,6 +50,9 @@ class ChampionshipPage extends StatelessWidget {
       elevation: 0.0,
       centerTitle: true,
       scrolledUnderElevation: 0.0,
+      iconTheme: const IconThemeData(
+        color: Colors.white, // Set back button color to white
+      ),
     );
   }
 }
@@ -109,7 +114,7 @@ class CustomCard extends StatelessWidget {
                       Text(
                         pos,
                         style: const TextStyle(
-                          fontSize: 24,
+                          fontSize: 36,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -130,7 +135,7 @@ class CustomCard extends StatelessWidget {
                       Text(
                         pts,
                         style: const TextStyle(
-                          fontSize: 24,
+                          fontSize: 36,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),

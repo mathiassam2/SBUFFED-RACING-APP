@@ -60,7 +60,7 @@ class _NavBarState extends State<NavBar> {
               left: (_selectedIndex / 4) * MediaQuery.of(context).size.width,
               child: Container(
                 width: MediaQuery.of(context).size.width / 4,
-                height: 5.0,
+                height: 3.0,
                 color: const Color(0xFFF7DA1B),
               ),
             ),
