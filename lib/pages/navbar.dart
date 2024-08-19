@@ -54,7 +54,7 @@ class _NavBarState extends State<NavBar> {
               showUnselectedLabels: false,
             ),
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
               top: 0,
               left: (_selectedIndex / 4) * MediaQuery.of(context).size.width,
