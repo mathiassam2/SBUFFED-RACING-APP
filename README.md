@@ -107,9 +107,3 @@ Before you begin, ensure you have met the following requirements:
       flutter run
       ```
 
-## Running Tests
-
-To run tests, use the following command:
-
-```bash
-flutter test
