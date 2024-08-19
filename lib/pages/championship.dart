@@ -12,24 +12,24 @@ class ChampionshipPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         children: const [
           CustomCard(
-            firstName: 'Mathias',
-            lastName: 'Sam',
+            firstName: 'Julian',
+            lastName: 'Nelson',
             pos: '01',
             pts: '40',
             imagePath: 'assets/images/julian_nelson.png', // Path to image
           ),
           SizedBox(height: 8.0), // Add space between cards
           CustomCard(
-            firstName: 'Max',
-            lastName: 'Verstappen',
+            firstName: 'Isaac',
+            lastName: 'Anderson',
             pos: '02',
             pts: '38',
             imagePath: 'assets/images/isaac_anderson.png', // Path to image
           ),
           SizedBox(height: 8.0), // Add space between cards
           CustomCard(
-            firstName: 'Lewis',
-            lastName: 'Hamilton',
+            firstName: 'Matrix',
+            lastName: 'Saul',
             pos: '03',
             pts: '36',
             imagePath: 'assets/images/matrix_saul.png', // Path to image
