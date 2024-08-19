@@ -12,12 +12,20 @@ class EventsPage extends StatelessWidget {
           style: TextStyle(
               color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        centerTitle: true,
         backgroundColor: Colors.black,
+        elevation: 0.0,
+        centerTitle: true,
+        scrolledUnderElevation: 0.0,
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Set back button color to white
+        ),
       ),
       backgroundColor: Colors.black,
       body: const Center(
-        child: Text('Events Page', style: TextStyle(color: Colors.white)),
+        child: Text(
+          'Events Content',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

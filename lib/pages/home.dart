@@ -8,134 +8,116 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Home Page',
-          style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.black,
-        elevation: 0.0,
-        centerTitle: true,
-      ),
+      appBar: buildAppBar(),
       backgroundColor: Colors.black,
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: [
-          // First Card
-          const Card(
-            color: Color.fromARGB(255, 29, 29, 29),
-            child: SizedBox(
-              height: 245.0,
-              child: ListTile(
-                title: Text(
-                  'Card Title 1',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ),
+          const CustomCard(
+            title: 'Card Title 1',
+            description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
+          ),
+          SectionRow(
+            title: 'Upcoming Race',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const EventsPage()),
             ),
           ),
-          // Upcoming Race Row
-          Padding(
-            padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Upcoming Race',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EventsPage()),
-                    );
-                  },
-                  child: const Text(
-                    'See more',
-                    style: TextStyle(
-                        color: Color(0xFFBFAF00), // Slightly dark yellow
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
+          const CustomCard(
+            title: 'Card Title 2',
+            description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
+          ),
+          SectionRow(
+            title: 'Standings',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ChampionshipPage()),
             ),
           ),
-          const Card(
-            color: Color.fromARGB(255, 29, 29, 29),
-            child: SizedBox(
-              height: 245.0,
-              child: ListTile(
-                title: Text(
-                  'Card Title 2',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ),
-            ),
+          const CustomCard(
+            title: 'Card Title 3',
+            description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
           ),
-          // Standings Row
-          Padding(
-            padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Standings',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ChampionshipPage()),
-                    );
-                  },
-                  child: const Text(
-                    'See more',
-                    style: TextStyle(
-                        color: Color(0xFFBFAF00), // Slightly dark yellow
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
+        ],
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      title: const Text(
+        'Home Page',
+        style: TextStyle(
+            color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+      backgroundColor: Colors.black,
+      elevation: 0.0,
+      centerTitle: true,
+      scrolledUnderElevation: 0.0,
+    );
+  }
+}
+
+class CustomCard extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const CustomCard({super.key, required this.title, required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color.fromARGB(255, 29, 29, 29),
+      child: SizedBox(
+        height: 245.0,
+        child: ListTile(
+          title: Text(
+            title,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          const Card(
-            color: Color.fromARGB(255, 29, 29, 29),
-            child: SizedBox(
-              height: 245.0,
-              child: ListTile(
-                title: Text(
-                  'Card Title 3',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ),
+          subtitle: Text(
+            description,
+            style: const TextStyle(color: Colors.white70),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SectionRow extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+
+  const SectionRow({super.key, required this.title, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+          ),
+          GestureDetector(
+            onTap: onTap,
+            child: const Text(
+              'See more',
+              style: TextStyle(
+                  color: Color(0xFFBFAF00), // Slightly dark yellow
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ],
