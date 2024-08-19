@@ -156,15 +156,15 @@ class CustomCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: -190,
-              bottom: -320,
+              right: 0,
+              bottom: 0,
               child: Container(
-                width: 550, // Width of the image
-                height: 550, // Height of the image
+                width: 220, // Width of the image
+                height: 220, // Height of the image
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.transparent, // Red border color
-                    width: 2, // Width of the border
+                    width: 0, // Width of the border
                   ),
                 ),
                 child: ClipRRect(
