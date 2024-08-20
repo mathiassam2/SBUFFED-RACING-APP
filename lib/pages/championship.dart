@@ -128,7 +128,7 @@ class DriverCard extends StatelessWidget {
                     firstName,
                     style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.white70,
+                      color: Colors.white,
                     ),
                   ),
                   Text(
