@@ -140,8 +140,8 @@ class DriverCard extends StatelessWidget {
     final Color teamColorFill = _hexToColor(teamColor).withOpacity(0.1);
 
     return Positioned(
-      bottom: -30,
-      right: 0,
+      bottom: -35,
+      right: -10,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.transparent, width: 0),
