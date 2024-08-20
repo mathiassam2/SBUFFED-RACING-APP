@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'driverDetail.dart';
+
 class ChampionshipPage extends StatelessWidget {
   const ChampionshipPage({super.key});
 
@@ -107,6 +109,7 @@ class DriverCard extends StatelessWidget {
             _buildDriverImage(),
             _buildDriverInfo(customColor),
             _buildPositionAndPoints(),
+            _buildViewDetailsButton(context),
           ],
         ),
       ),
@@ -270,6 +273,66 @@ class DriverCard extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildViewDetailsButton(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      right: -30,
+      child: TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => driverDetail(
+                firstName: firstName,
+                lastName: lastName,
+                pos: pos,
+                pts: pts,
+                driverImagePath: driverImagePath,
+                teamColor: teamColor,
+                teamImagePath: teamImagePath,
+                driverNumber: driverNumber,
+              ),
+            ),
+          );
+        },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'View Details',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+              Transform.translate(
+                offset: const Offset(0, 0), // Adjust the offset as needed
+                child: Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.white.withOpacity(1.0), // Full opacity
+                ),
+              ),
+              Transform.translate(
+                offset: const Offset(-15, 0), // Adjust the offset as needed
+                child: Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.white.withOpacity(0.7), // 70% opacity
+                ),
+              ),
+              Transform.translate(
+                offset: const Offset(-30, 0), // Adjust the offset as needed
+                child: Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.white.withOpacity(0.5), // 50% opacity
+                ),
+              ),
+            ],
+          )
+
+      ),
     );
   }
 
