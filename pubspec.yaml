@@ -62,6 +62,9 @@ flutter:
         - assets/images/drivers/julian_nelson.png
         - assets/images/drivers/isaac_anderson.png
         - assets/images/drivers/matrix_saul.png
+        - assets/images/constructors/mclaren.png
+        - assets/images/constructors/mercedes.png
+        - assets/images/constructors/renault.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/to/resolution-aware-images

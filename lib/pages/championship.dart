@@ -16,8 +16,8 @@ class ChampionshipPage extends StatelessWidget {
             lastName: 'Nelson',
             pos: '01',
             pts: '40',
-            imagePath: 'assets/images/drivers/julian_nelson.png',
-            hexColor: '#F7DA1B',
+            driverImagePath: 'assets/images/drivers/julian_nelson.png',
+            teamColor: '#F7DA1B',
           ),
           SizedBox(height: 8.0),
           DriverCard(
@@ -25,8 +25,8 @@ class ChampionshipPage extends StatelessWidget {
             lastName: 'Anderson',
             pos: '02',
             pts: '38',
-            imagePath: 'assets/images/drivers/isaac_anderson.png',
-            hexColor: '#08B1A0',
+            driverImagePath: 'assets/images/drivers/isaac_anderson.png',
+            teamColor: '#08B1A0',
           ),
           SizedBox(height: 8.0),
           DriverCard(
@@ -34,8 +34,8 @@ class ChampionshipPage extends StatelessWidget {
             lastName: 'Saul',
             pos: '03',
             pts: '36',
-            imagePath: 'assets/images/drivers/matrix_saul.png',
-            hexColor: '#FE762A',
+            driverImagePath: 'assets/images/drivers/matrix_saul.png',
+            teamColor: '#FE762A',
           ),
         ],
       ),
@@ -68,8 +68,8 @@ class DriverCard extends StatelessWidget {
   final String lastName;
   final String pos;
   final String pts;
-  final String imagePath;
-  final String hexColor;
+  final String driverImagePath;
+  final String teamColor;
 
   const DriverCard({
     super.key,
@@ -77,14 +77,14 @@ class DriverCard extends StatelessWidget {
     required this.lastName,
     required this.pos,
     required this.pts,
-    required this.imagePath,
-    required this.hexColor, // New hex color parameter
+    required this.driverImagePath,
+    required this.teamColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Convert hexColor string to Color
-    final Color customColor = _hexToColor(hexColor);
+    // Convert teamColor string to Color
+    final Color customColor = _hexToColor(teamColor);
 
     return Card(
       color: const Color(0xFF0D0D0D),
@@ -204,7 +204,7 @@ class DriverCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
-                    imagePath,
+                    driverImagePath,
                     width: 100,
                     height: 100,
                     fit: BoxFit.fitHeight,
@@ -219,9 +219,9 @@ class DriverCard extends StatelessWidget {
   }
 
   // Helper method to convert hex color string to Color
-  Color _hexToColor(String hexColor) {
-    hexColor = hexColor.replaceAll("#", "");
-    return Color(int.parse("FF$hexColor", radix: 16));
+  Color _hexToColor(String teamColor) {
+    teamColor = teamColor.replaceAll("#", "");
+    return Color(int.parse("FF$teamColor", radix: 16));
   }
 }
 
