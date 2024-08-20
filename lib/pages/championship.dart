@@ -16,7 +16,7 @@ class ChampionshipPage extends StatelessWidget {
             lastName: 'Nelson',
             pos: '01',
             pts: '40',
-            imagePath: 'assets/images/julian_nelson.png',
+            imagePath: 'assets/images/drivers/julian_nelson.png',
             hexColor: '#F7DA1B',
           ),
           SizedBox(height: 8.0),
@@ -25,7 +25,7 @@ class ChampionshipPage extends StatelessWidget {
             lastName: 'Anderson',
             pos: '02',
             pts: '38',
-            imagePath: 'assets/images/isaac_anderson.png',
+            imagePath: 'assets/images/drivers/isaac_anderson.png',
             hexColor: '#08B1A0',
           ),
           SizedBox(height: 8.0),
@@ -34,7 +34,7 @@ class ChampionshipPage extends StatelessWidget {
             lastName: 'Saul',
             pos: '03',
             pts: '36',
-            imagePath: 'assets/images/matrix_saul.png',
+            imagePath: 'assets/images/drivers/matrix_saul.png',
             hexColor: '#FE762A',
           ),
         ],
@@ -87,7 +87,7 @@ class DriverCard extends StatelessWidget {
     final Color customColor = _hexToColor(hexColor);
 
     return Card(
-      color: const Color.fromARGB(255, 29, 29, 29),
+      color: const Color(0xFF0D0D0D),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0), // Same border radius as Card
       ),
