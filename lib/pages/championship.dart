@@ -150,7 +150,7 @@ class DriverCard extends StatelessWidget {
             ),
             // Name and team logo (in the foreground, should be above gradient and driver image)
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 14.0, right: 16.0, bottom: 5.0),
+              padding: const EdgeInsets.only(left: 16.0, top: 14.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -198,7 +198,7 @@ class DriverCard extends StatelessWidget {
               left: 0,
               bottom: 0,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(left: 16.0, bottom: 6.0),
                 child: Row(
                   children: [
                     Column(
