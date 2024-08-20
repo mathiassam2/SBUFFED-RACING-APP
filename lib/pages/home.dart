@@ -49,10 +49,19 @@ class HomePage extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      title: const Text(
-        'Home Page',
-        style: TextStyle(
-            color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      title: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.transparent, // Border color
+            width: 0.0,        // Border width
+          ),
+        ),
+        child: Image.asset(
+          'assets/images/app_logo/sbuffed_logo.png',
+          width: 100, // Adjust width as needed
+          height: 40, // Adjust height as needed
+          fit: BoxFit.contain, // Adjust fit as needed
+        ),
       ),
       backgroundColor: Colors.black,
       elevation: 0.0,
