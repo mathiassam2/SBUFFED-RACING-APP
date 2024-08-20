@@ -19,6 +19,7 @@ class ChampionshipPage extends StatelessWidget {
             driverImagePath: 'assets/images/drivers/julian_nelson.png',
             teamColor: '#F7DA1B',
             teamImagePath: 'assets/images/constructors/renault.png',
+            driverNumber: '1  ',
           ),
           SizedBox(height: 8.0),
           DriverCard(
@@ -29,6 +30,7 @@ class ChampionshipPage extends StatelessWidget {
             driverImagePath: 'assets/images/drivers/isaac_anderson.png',
             teamColor: '#08B1A0',
             teamImagePath: 'assets/images/constructors/mercedes.png',
+            driverNumber: '69',
           ),
           SizedBox(height: 8.0),
           DriverCard(
@@ -39,6 +41,7 @@ class ChampionshipPage extends StatelessWidget {
             driverImagePath: 'assets/images/drivers/matrix_saul.png',
             teamColor: '#FE762A',
             teamImagePath: 'assets/images/constructors/mclaren.png',
+            driverNumber: '7  ',
           ),
         ],
       ),
@@ -60,7 +63,7 @@ class ChampionshipPage extends StatelessWidget {
       centerTitle: true,
       scrolledUnderElevation: 0.0,
       iconTheme: const IconThemeData(
-        color: Colors.white, // Set back button color to white
+        color: Colors.white,
       ),
     );
   }
@@ -73,7 +76,8 @@ class DriverCard extends StatelessWidget {
   final String pts;
   final String driverImagePath;
   final String teamColor;
-  final String teamImagePath; // New parameter for team logo
+  final String teamImagePath;
+  final String driverNumber;
 
   const DriverCard({
     super.key,
@@ -83,187 +87,194 @@ class DriverCard extends StatelessWidget {
     required this.pts,
     required this.driverImagePath,
     required this.teamColor,
-    required this.teamImagePath, // Initialize the team logo
+    required this.teamImagePath,
+    required this.driverNumber,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Convert teamColor string to Color
     final Color customColor = _hexToColor(teamColor);
 
     return Card(
       color: const Color(0xFF0D0D0D),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0), // Same border radius as Card
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       child: SizedBox(
         height: 245.0,
         child: Stack(
           children: [
-            // Radial Gradient Positioned at the top-right corner with rounded border
-            Positioned(
-              top: 0,
-              right: 0,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0), // Rounded corners
-                child: Container(
-                  width: 400, // Adjust the width of the gradient
-                  height: 400, // Adjust the height of the gradient
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      colors: [
-                        customColor.withOpacity(0.1), // Gradient start color
-                        Colors.transparent,           // Gradient end color
-                      ],
-                      radius: 0.85, // Radius of the gradient
-                      center: const Alignment(1.0, -1.0), // Centered at the top-right corner
-                      focal: const Alignment(1.0, -1.0),
-                      focalRadius: 0.1, // Focal point radius, adjust for focus effect
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            // Driver image (in the background, should be below name and team logo)
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Container(
-                width: 210, // Width of the image
-                height: 210, // Height of the image
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.transparent, // Transparent border color
-                    width: 0, // Width of the border
-                  ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    driverImagePath,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              ),
-            ),
-            // Name and team logo (in the foreground, should be above gradient and driver image)
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 14.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Team logo image with red border and top margin
-                  Container(
-                    margin: const EdgeInsets.only(top: 5.0), // Top margin
-                    width: 50, // Adjust width as needed
-                    height: 50, // Adjust height as needed
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4.0), // Adjust radius to match image
-                      child: Image.asset(
-                        teamImagePath,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16.0), // Space between image and text
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        firstName,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        lastName,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: customColor, // Use custom color for last name
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            // Positioning the position and points info (in the foreground, should be above other elements)
-            Positioned(
-              left: 0,
-              bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0, bottom: 6.0),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Pos',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white70,
-                          ),
-                        ),
-                        Text(
-                          pos,
-                          style: const TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 25.0),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Pts',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white70,
-                          ),
-                        ),
-                        Text(
-                          pts,
-                          style: const TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            _buildGradientBackground(customColor),
+            _buildDriverNumber(),
+            _buildDriverImage(),
+            _buildDriverInfo(customColor),
+            _buildPositionAndPoints(),
           ],
         ),
       ),
     );
   }
 
-  // Helper method to convert hex color string to Color
+  Widget _buildGradientBackground(Color customColor) {
+    return Positioned(
+      top: 0,
+      right: 0,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Container(
+          width: 400,
+          height: 400,
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              colors: [customColor.withOpacity(0.05), Colors.transparent],
+              radius: 0.85,
+              center: const Alignment(1.0, -1.0),
+              focal: const Alignment(1.0, -1.0),
+              focalRadius: 0.1,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDriverNumber() {
+    final Color teamColorFill = _hexToColor(teamColor).withOpacity(0.1);
+
+    return Positioned(
+      bottom: -30,
+      right: 0,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.transparent, width: 0),
+        ),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Text(
+            driverNumber,
+            style: TextStyle(
+              fontSize: 205,
+              fontWeight: FontWeight.w800,
+              color: teamColorFill.withOpacity(0.1),
+              height: 1,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDriverImage() {
+    return Positioned(
+      bottom: 0,
+      right: 0,
+      child: Container(
+        width: 210,
+        height: 210,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.transparent, width: 0),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.asset(
+            driverImagePath,
+            width: 100,
+            height: 100,
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDriverInfo(Color customColor) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, top: 14.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTeamLogo(),
+          const SizedBox(width: 16.0),
+          _buildDriverName(customColor),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTeamLogo() {
+    return Container(
+      margin: const EdgeInsets.only(top: 5.0),
+      width: 50,
+      height: 50,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4.0),
+        child: Image.asset(
+          teamImagePath,
+          width: 50,
+          height: 50,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDriverName(Color customColor) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          firstName,
+          style: const TextStyle(fontSize: 16, color: Colors.white),
+        ),
+        Text(
+          lastName,
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: customColor,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPositionAndPoints() {
+    return Positioned(
+      left: 0,
+      bottom: 0,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16.0, bottom: 6.0),
+        child: Row(
+          children: [
+            _buildInfoColumn('Pos', pos),
+            const SizedBox(width: 25.0),
+            _buildInfoColumn('Pts', pts),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoColumn(String label, String value) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(fontSize: 14, color: Colors.white70),
+        ),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
   Color _hexToColor(String teamColor) {
     teamColor = teamColor.replaceAll("#", "");
     return Color(int.parse("FF$teamColor", radix: 16));
   }
 }
-
-
-
-
-
-
-
-
-
