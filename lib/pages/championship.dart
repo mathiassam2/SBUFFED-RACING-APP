@@ -104,17 +104,43 @@ class DriverCard extends StatelessWidget {
         height: 245.0,
         child: Stack(
           children: [
-            _buildGradientBackground(customColor),
-            _buildDriverNumber(),
-            _buildDriverImage(),
+            _buildDriverNumber(),       // Bottom-most layer
             _buildDriverInfo(customColor),
+            _buildGradientBackground(customColor),
+            _buildDriverImage(),
+            _buildOverlayCard(),        // New overlay card
             _buildPositionAndPoints(),
-            _buildViewDetailsButton(context),
+            _buildViewDetailsButton(context), // Top-most layer
           ],
         ),
       ),
     );
   }
+
+  Widget _buildOverlayCard() {
+    return Positioned(
+      top: 130,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF060606), Colors.transparent],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+          border: Border.all(
+            color: Colors.transparent,        // Red border color
+            width: 0.0,               // Border width
+          ),
+        ),
+      ),
+    );
+  }
+
+
 
   Widget _buildGradientBackground(Color customColor) {
     return Positioned(
@@ -123,8 +149,8 @@ class DriverCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Container(
-          width: 400,
-          height: 400,
+          width: 450,
+          height: 450,
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [customColor.withOpacity(0.05), Colors.transparent],
@@ -143,7 +169,7 @@ class DriverCard extends StatelessWidget {
     final Color teamColorFill = _hexToColor(teamColor).withOpacity(0.1);
 
     return Positioned(
-      bottom: -35,
+      bottom: -25,
       right: -10,
       child: Container(
         decoration: BoxDecoration(
@@ -155,7 +181,7 @@ class DriverCard extends StatelessWidget {
             driverNumber,
             style: TextStyle(
               fontSize: 205,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.w900,
               color: teamColorFill.withOpacity(0.1),
               height: 1,
             ),
@@ -278,9 +304,16 @@ class DriverCard extends StatelessWidget {
 
   Widget _buildViewDetailsButton(BuildContext context) {
     return Positioned(
-      bottom: 0,
-      right: -30,
+      bottom: 13,
+      right: -20,
       child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          minimumSize: Size.zero, // No minimum size
+          padding: EdgeInsets.zero, // No padding
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap to content
+          overlayColor: Colors.transparent, // No overlay color
+        ),
         onPressed: () {
           Navigator.push(
             context,
@@ -298,43 +331,43 @@ class DriverCard extends StatelessWidget {
             ),
           );
         },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'View Details',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'View Details',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
               ),
-              Transform.translate(
-                offset: const Offset(0, 0), // Adjust the offset as needed
-                child: Icon(
-                  Icons.chevron_right_rounded,
-                  color: Colors.white.withOpacity(1.0), // Full opacity
-                ),
+            ),
+            Transform.translate(
+              offset: const Offset(0, 0), // Adjust the offset as needed
+              child: Icon(
+                Icons.chevron_right_rounded,
+                color: Colors.white.withOpacity(1.0), // Full opacity
               ),
-              Transform.translate(
-                offset: const Offset(-15, 0), // Adjust the offset as needed
-                child: Icon(
-                  Icons.chevron_right_rounded,
-                  color: Colors.white.withOpacity(0.7), // 70% opacity
-                ),
+            ),
+            Transform.translate(
+              offset: const Offset(-15, 0), // Adjust the offset as needed
+              child: Icon(
+                Icons.chevron_right_rounded,
+                color: Colors.white.withOpacity(0.7), // 70% opacity
               ),
-              Transform.translate(
-                offset: const Offset(-30, 0), // Adjust the offset as needed
-                child: Icon(
-                  Icons.chevron_right_rounded,
-                  color: Colors.white.withOpacity(0.5), // 50% opacity
-                ),
+            ),
+            Transform.translate(
+              offset: const Offset(-30, 0), // Adjust the offset as needed
+              child: Icon(
+                Icons.chevron_right_rounded,
+                color: Colors.white.withOpacity(0.5), // 50% opacity
               ),
-            ],
-          )
-
+            ),
+          ],
+        ),
       ),
     );
   }
+
 
   Color _hexToColor(String teamColor) {
     teamColor = teamColor.replaceAll("#", "");
