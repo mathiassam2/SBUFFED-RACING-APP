@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'driverDetail.dart';
 import 'events.dart'; // Import the Events page
 import 'championship.dart'; // Import the Championship page
@@ -7,48 +8,62 @@ import 'championship.dart'; // Import the Championship page
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  // All data will be refreshed from this function
+  Future<void> _handleRefresh() async {
+    return await Future.delayed(const Duration(seconds: 2));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       backgroundColor: Colors.black,
-      body: ListView(
-        padding: const EdgeInsets.all(8.0),
-        children: [
-          const DriverCard(
-            firstName: 'Julian',
-            lastName: 'Nelson',
-            pos: '01',
-            pts: '40',
-            driverImagePath: 'assets/images/drivers/julian_nelson.png',
-            teamColor: '#F7DA1B',
-            teamImagePath: 'assets/images/constructors/renault.png',
-            driverNumber: '1  ',
-          ),
-          const SectionRow(
-            title: 'Upcoming Race',
-            showSeeMore: false, // Hide "See more"
-          ),
-          TrackInfoCard(
-            raceName: 'Serapi Grand Prix',
-            trackName: 'SERAPI BORNEO RACE TRACK',
-            location: 'MY',
-            raceDate: DateTime(2024, 9, 7),
-          ),
-          SectionRow(
-            title: 'Standings',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ChampionshipPage()),
+      body: LiquidPullToRefresh(
+        onRefresh: _handleRefresh,
+        color: const Color(0xFFBFAF00),
+        height: 50,
+        backgroundColor: Colors.black,
+        animSpeedFactor: 2,
+        showChildOpacityTransition: false,
+        springAnimationDurationInMilliseconds: 500,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: [
+            const DriverCard(
+              firstName: 'Julian',
+              lastName: 'Nelson',
+              pos: '01',
+              pts: '40',
+              driverImagePath: 'assets/images/drivers/julian_nelson.png',
+              teamColor: '#F7DA1B',
+              teamImagePath: 'assets/images/constructors/renault.png',
+              driverNumber: '1  ',
             ),
-            showSeeMore: true, // Show "See more"
-          ),
-          const CustomCard(
-            title: 'Card Title 3',
-            description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
-          ),
-        ],
+            const SectionRow(
+              title: 'Upcoming Race',
+              showSeeMore: false, // Hide "See more"
+            ),
+            TrackInfoCard(
+              raceName: 'Serapi Grand Prix',
+              trackName: 'SERAPI BORNEO RACE TRACK',
+              location: 'MY',
+              raceDate: DateTime(2024, 9, 7),
+            ),
+            SectionRow(
+              title: 'Standings',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChampionshipPage()),
+              ),
+              showSeeMore: true, // Show "See more"
+            ),
+            const CustomCard(
+              title: 'Card Title 3',
+              description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
+            ),
+          ],
+        ),
       ),
     );
   }
