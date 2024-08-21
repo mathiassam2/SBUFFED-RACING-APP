@@ -483,7 +483,7 @@ class TrackInfoCard extends StatelessWidget {
           children: [
             _buildTrackInfo(),
             _buildOverlayCard(),
-            _buildViewDetailsButton(context),
+            // _buildViewDetailsButton(context),
           ],
         ),
       ),
@@ -558,55 +558,55 @@ class TrackInfoCard extends StatelessWidget {
     );
   }
 
-  Widget _buildViewDetailsButton(BuildContext context) {
-    return Positioned(
-      bottom: 13,
-      right: -20,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          minimumSize: Size.zero, // No minimum size
-          padding: EdgeInsets.zero, // No padding
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap to content
-          overlayColor: Colors.transparent, // No overlay color
-        ),
-        onPressed: () {
-
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'View Details',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-            Transform.translate(
-              offset: const Offset(0, 0), // Adjust the offset as needed
-              child: Icon(
-                Icons.chevron_right_rounded,
-                color: Colors.white.withOpacity(1.0), // Full opacity
-              ),
-            ),
-            Transform.translate(
-              offset: const Offset(-15, 0), // Adjust the offset as needed
-              child: Icon(
-                Icons.chevron_right_rounded,
-                color: Colors.white.withOpacity(0.7), // 70% opacity
-              ),
-            ),
-            Transform.translate(
-              offset: const Offset(-30, 0), // Adjust the offset as needed
-              child: Icon(
-                Icons.chevron_right_rounded,
-                color: Colors.white.withOpacity(0.5), // 50% opacity
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _buildViewDetailsButton(BuildContext context) {
+  //   return Positioned(
+  //     bottom: 13,
+  //     right: -20,
+  //     child: TextButton(
+  //       style: TextButton.styleFrom(
+  //         backgroundColor: Colors.transparent,
+  //         minimumSize: Size.zero, // No minimum size
+  //         padding: EdgeInsets.zero, // No padding
+  //         tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap to content
+  //         overlayColor: Colors.transparent, // No overlay color
+  //       ),
+  //       onPressed: () {
+  //
+  //       },
+  //       child: Row(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           const Text(
+  //             'View Details',
+  //             style: TextStyle(
+  //               color: Colors.white,
+  //               fontSize: 16,
+  //             ),
+  //           ),
+  //           Transform.translate(
+  //             offset: const Offset(0, 0), // Adjust the offset as needed
+  //             child: Icon(
+  //               Icons.chevron_right_rounded,
+  //               color: Colors.white.withOpacity(1.0), // Full opacity
+  //             ),
+  //           ),
+  //           Transform.translate(
+  //             offset: const Offset(-15, 0), // Adjust the offset as needed
+  //             child: Icon(
+  //               Icons.chevron_right_rounded,
+  //               color: Colors.white.withOpacity(0.7), // 70% opacity
+  //             ),
+  //           ),
+  //           Transform.translate(
+  //             offset: const Offset(-30, 0), // Adjust the offset as needed
+  //             child: Icon(
+  //               Icons.chevron_right_rounded,
+  //               color: Colors.white.withOpacity(0.5), // 50% opacity
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 }
