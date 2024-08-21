@@ -481,14 +481,6 @@ class TrackInfoCard extends StatelessWidget {
     required this.raceDate,
   });
 
-  String _getMonthAbbreviation(int month) {
-    const monthNames = [
-      '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
-    return monthNames[month];
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -518,7 +510,6 @@ class TrackInfoCard extends StatelessWidget {
               _buildOverlayCard(),  // Add the overlay on top of the image
               _buildTrackInfo(),
               _buildRaceDate(),
-              // _buildViewDetailsButton(context),
             ],
           ),
         ),
@@ -620,73 +611,37 @@ class TrackInfoCard extends StatelessWidget {
             Text(
               raceName,
               style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.white
+                fontSize: 14,
+                color: Colors.white,
               ),
             ),
           ],
         ),
-        Text(
-          trackName,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: Colors.white
+        Container(
+          constraints: const BoxConstraints(
+            maxWidth: 300.0, // Adjust the maxWidth as needed
+          ),
+          child: Text(
+            trackName,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: Colors.white,
+            ),
           ),
         ),
       ],
     );
   }
 
-  // Widget _buildViewDetailsButton(BuildContext context) {
-  //   return Positioned(
-  //     bottom: 13,
-  //     right: -20,
-  //     child: TextButton(
-  //       style: TextButton.styleFrom(
-  //         backgroundColor: Colors.transparent,
-  //         minimumSize: Size.zero, // No minimum size
-  //         padding: EdgeInsets.zero, // No padding
-  //         tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap to content
-  //         overlayColor: Colors.transparent, // No overlay color
-  //       ),
-  //       onPressed: () {
-  //
-  //       },
-  //       child: Row(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           const Text(
-  //             'View Details',
-  //             style: TextStyle(
-  //               color: Colors.white,
-  //               fontSize: 16,
-  //             ),
-  //           ),
-  //           Transform.translate(
-  //             offset: const Offset(0, 0), // Adjust the offset as needed
-  //             child: Icon(
-  //               Icons.chevron_right_rounded,
-  //               color: Colors.white.withOpacity(1.0), // Full opacity
-  //             ),
-  //           ),
-  //           Transform.translate(
-  //             offset: const Offset(-15, 0), // Adjust the offset as needed
-  //             child: Icon(
-  //               Icons.chevron_right_rounded,
-  //               color: Colors.white.withOpacity(0.7), // 70% opacity
-  //             ),
-  //           ),
-  //           Transform.translate(
-  //             offset: const Offset(-30, 0), // Adjust the offset as needed
-  //             child: Icon(
-  //               Icons.chevron_right_rounded,
-  //               color: Colors.white.withOpacity(0.5), // 50% opacity
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+
+  String _getMonthAbbreviation(int month) {
+    const monthNames = [
+      '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    return monthNames[month];
+  }
 }
