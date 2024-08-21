@@ -45,6 +45,17 @@ class ChampionshipPage extends StatelessWidget {
             teamImagePath: 'assets/images/constructors/mclaren.png',
             driverNumber: '7  ',
           ),
+          SizedBox(height: 8.0),
+          DriverCard(
+            firstName: '???',
+            lastName: '??????',
+            pos: '?',
+            pts: '?',
+            driverImagePath: 'assets/images/drivers/default_driver.png',
+            teamColor: '#FFFFFF',
+            teamImagePath: 'assets/images/constructors/default_team.png',
+            driverNumber: '7  ',
+          ),
         ],
       ),
     );
