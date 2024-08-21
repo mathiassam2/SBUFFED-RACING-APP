@@ -54,7 +54,7 @@ class ChampionshipPage extends StatelessWidget {
             driverImagePath: 'assets/images/drivers/default_driver.png',
             teamColor: '#FFFFFF',
             teamImagePath: 'assets/images/constructors/default_team.png',
-            driverNumber: '7  ',
+            driverNumber: '?  ',
           ),
         ],
       ),
