@@ -25,12 +25,9 @@ class HomePage extends StatelessWidget {
             teamImagePath: 'assets/images/constructors/renault.png',
             driverNumber: '1  ',
           ),
-          SectionRow(
+          const SectionRow(
             title: 'Upcoming Race',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const EventsPage()),
-            ),
+            showSeeMore: false, // Hide "See more"
           ),
           TrackInfoCard(
             raceName: 'Serapi Grand Prix',
@@ -44,6 +41,7 @@ class HomePage extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => const ChampionshipPage()),
             ),
+            showSeeMore: true, // Show "See more"
           ),
           const CustomCard(
             title: 'Card Title 3',
@@ -109,9 +107,15 @@ class CustomCard extends StatelessWidget {
 
 class SectionRow extends StatelessWidget {
   final String title;
-  final VoidCallback onTap;
+  final VoidCallback? onTap; // Nullable, as it might not be provided
+  final bool showSeeMore;    // New parameter to control visibility of "See more"
 
-  const SectionRow({super.key, required this.title, required this.onTap});
+  const SectionRow({
+    super.key,
+    required this.title,
+    this.onTap,
+    this.showSeeMore = true, // Defaults to true
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -127,21 +131,23 @@ class SectionRow extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold),
           ),
-          GestureDetector(
-            onTap: onTap,
-            child: const Text(
-              'See more',
-              style: TextStyle(
-                  color: Color(0xFFBFAF00), // Slightly dark yellow
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold),
+          if (showSeeMore && onTap != null) // Show only if showSeeMore is true and onTap is provided
+            GestureDetector(
+              onTap: onTap,
+              child: const Text(
+                'See more',
+                style: TextStyle(
+                    color: Color(0xFFBFAF00), // Slightly dark yellow
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
         ],
       ),
     );
   }
 }
+
 
 class DriverCard extends StatelessWidget {
   final String firstName;
@@ -485,28 +491,36 @@ class TrackInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: const Color(0xFF0D0D0D),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      child: SizedBox(
-        height: 245.0,
-        child: Stack(
-          children: [
-            // Background image
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0), // Same as the card's border radius
-                child: Image.asset(
-                  'assets/images/misc/background1.png',
-                  fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const EventsPage()),
+        );
+      },
+      child: Card(
+        color: const Color(0xFF0D0D0D),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        child: SizedBox(
+          height: 245.0,
+          child: Stack(
+            children: [
+              // Background image
+              Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0), // Same as the card's border radius
+                  child: Image.asset(
+                    'assets/images/misc/background1.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            _buildOverlayCard(),  // Add the overlay on top of the image
-            _buildTrackInfo(),
-            _buildRaceDate(),
-            // _buildViewDetailsButton(context),
-          ],
+              _buildOverlayCard(),  // Add the overlay on top of the image
+              _buildTrackInfo(),
+              _buildRaceDate(),
+              // _buildViewDetailsButton(context),
+            ],
+          ),
         ),
       ),
     );
