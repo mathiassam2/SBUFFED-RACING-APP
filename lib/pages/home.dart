@@ -492,8 +492,18 @@ class TrackInfoCard extends StatelessWidget {
         height: 245.0,
         child: Stack(
           children: [
+            // Background image
+            Positioned.fill(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0), // Same as the card's border radius
+                child: Image.asset(
+                  'assets/images/misc/background1.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            _buildOverlayCard(),  // Add the overlay on top of the image
             _buildTrackInfo(),
-            _buildOverlayCard(),
             _buildRaceDate(),
             // _buildViewDetailsButton(context),
           ],
@@ -502,28 +512,26 @@ class TrackInfoCard extends StatelessWidget {
     );
   }
 
+
   Widget _buildOverlayCard() {
     return Positioned(
-      top: 130,
+      top: 0,
       left: 0,
       right: 0,
       bottom: 0,
       child: Container(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF060606), Colors.transparent],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-          ),
+          color: const Color(0xFF060606).withOpacity(0.7),
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
-            color: Colors.transparent,        // Red border color
-            width: 0.0,               // Border width
+            color: Colors.transparent, // Transparent border color
+            width: 0.0,                // Border width
           ),
         ),
       ),
     );
   }
+
 
   Widget _buildTrackInfo() {
     return Padding(
