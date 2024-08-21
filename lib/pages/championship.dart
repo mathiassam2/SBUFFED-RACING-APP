@@ -333,7 +333,7 @@ class DriverCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => driverDetail(
+              builder: (context) => DriverDetail(
                 firstName: firstName,
                 lastName: lastName,
                 pos: pos,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class driverDetail extends StatelessWidget {
+class DriverDetail extends StatelessWidget {
   final String firstName;
   final String lastName;
   final String pos;
@@ -10,7 +10,7 @@ class driverDetail extends StatelessWidget {
   final String teamImagePath;
   final String driverNumber;
 
-  const driverDetail({
+  const DriverDetail({
     super.key,
     required this.firstName,
     required this.lastName,
