@@ -108,7 +108,7 @@ class DriverCard extends StatelessWidget {
             _buildDriverInfo(customColor),
             _buildGradientBackground(customColor),
             _buildDriverImage(),
-            _buildOverlayCard(),        // New overlay card
+            _buildOverlayCard(),
             _buildPositionAndPoints(),
             _buildViewDetailsButton(context), // Top-most layer
           ],
@@ -140,8 +140,6 @@ class DriverCard extends StatelessWidget {
     );
   }
 
-
-
   Widget _buildGradientBackground(Color customColor) {
     return Positioned(
       top: 0,
@@ -166,7 +164,7 @@ class DriverCard extends StatelessWidget {
   }
 
   Widget _buildDriverNumber() {
-    final Color teamColorFill = _hexToColor(teamColor).withOpacity(0.1);
+    final Color teamColorFill = _hexToColor(teamColor).withOpacity(0.2);
 
     return Positioned(
       bottom: -25,
@@ -177,14 +175,31 @@ class DriverCard extends StatelessWidget {
         ),
         child: Align(
           alignment: Alignment.bottomRight,
-          child: Text(
-            driverNumber,
-            style: TextStyle(
-              fontSize: 205,
-              fontWeight: FontWeight.w900,
-              color: teamColorFill.withOpacity(0.1),
-              height: 1,
-            ),
+          child: Stack(
+            children: [
+              // Stroke feature on driver number have overlapping strokes (fix required)
+              // Text(
+              //   driverNumber,
+              //   style: TextStyle(
+              //     fontSize: 205,
+              //     fontWeight: FontWeight.w900,
+              //     foreground: Paint()
+              //       ..style = PaintingStyle.stroke
+              //       ..strokeWidth = 5
+              //       ..color = _hexToColor(teamColor).withOpacity(1.0),
+              //     height: 1,
+              //   ),
+              // ),
+              Text(
+                driverNumber,
+                style: TextStyle(
+                  fontSize: 220, // Slightly smaller font size for fill
+                  fontWeight: FontWeight.w900,
+                  color: teamColorFill,
+                  height: 1,
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -367,7 +382,6 @@ class DriverCard extends StatelessWidget {
       ),
     );
   }
-
 
   Color _hexToColor(String teamColor) {
     teamColor = teamColor.replaceAll("#", "");
