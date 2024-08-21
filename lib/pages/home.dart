@@ -32,10 +32,11 @@ class HomePage extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const EventsPage()),
             ),
           ),
-          const TrackInfoCard(
+          TrackInfoCard(
             raceName: 'Serapi Grand Prix',
             trackName: 'SERAPI BORNEO RACE TRACK',
             location: 'MY',
+            raceDate: DateTime(2024, 9, 7),
           ),
           SectionRow(
             title: 'Standings',
@@ -464,13 +465,23 @@ class TrackInfoCard extends StatelessWidget {
   final String raceName;
   final String trackName;
   final String location;
+  final DateTime raceDate;
 
   const TrackInfoCard({
     super.key,
     required this.raceName,
     required this.trackName,
     required this.location,
+    required this.raceDate,
   });
+
+  String _getMonthAbbreviation(int month) {
+    const monthNames = [
+      '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    return monthNames[month];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -483,6 +494,7 @@ class TrackInfoCard extends StatelessWidget {
           children: [
             _buildTrackInfo(),
             _buildOverlayCard(),
+            _buildRaceDate(),
             // _buildViewDetailsButton(context),
           ],
         ),
@@ -521,6 +533,52 @@ class TrackInfoCard extends StatelessWidget {
         children: [
           _buildTrackNameAndLocation(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildRaceDate() {
+    return Positioned(
+      left: 0,
+      bottom: 0,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16.0, bottom: 13.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  left: BorderSide(
+                    color: Color(0xFFF7DA1B), // Yellow border color
+                    width: 2.0, // Border thickness
+                  ),
+                ),
+              ),
+              padding: const EdgeInsets.only(left: 12.0), // Left padding only
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    raceDate.day.toString().padLeft(2, '0'),
+                    style: const TextStyle(
+                      fontSize: 36,
+                      color: Color(0xFFF7DA1B),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "${_getMonthAbbreviation(raceDate.month)} ${raceDate.year.toString().substring(2)}'",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
