@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
               firstName: 'Julian',
               lastName: 'Nelson',
               pos: '01',
-              pts: '40',
+              pts: '41',
               driverImagePath: 'assets/images/drivers/julian_nelson.png',
               teamColor: '#F7DA1B',
               teamImagePath: 'assets/images/constructors/renault.png',
