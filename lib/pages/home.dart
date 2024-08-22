@@ -618,7 +618,7 @@ class TrackInfoCard extends StatelessWidget {
         Row(
           children: [
             CountryFlag.fromCountryCode(
-              'MY',
+              location,
               width: 25,
               height: 15,
             ),
