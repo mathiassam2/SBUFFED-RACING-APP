@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'driverDetail.dart';
+import 'driver_detail.dart';
 
 class ChampionshipPage extends StatelessWidget {
   const ChampionshipPage({super.key});

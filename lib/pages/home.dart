@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'driverDetail.dart';
+import 'driver_detail.dart';
 import 'events.dart'; // Import the Events page
 import 'championship.dart'; // Import the Championship page
 
