@@ -8,10 +8,10 @@ class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
   @override
-  _NavBarState createState() => _NavBarState();
+  NavBarState createState() => NavBarState();
 }
 
-class _NavBarState extends State<NavBar> {
+class NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
 
   static const List<Widget> _pages = [
