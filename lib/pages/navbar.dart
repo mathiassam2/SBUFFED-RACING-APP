@@ -14,10 +14,10 @@ class NavBar extends StatefulWidget {
 class NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = [
-    HomePage(),
-    EventsPage(),
-    ChampionshipPage(),
+  static final List<Widget> _pages = [
+    const HomePage(),
+    const EventsPage(),
+    const ChampionshipPage(),
     ProfilePage(),
   ];
 

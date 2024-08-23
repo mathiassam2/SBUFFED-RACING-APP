@@ -1,7 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+
+  final user = FirebaseAuth.instance.currentUser!;
+
+  void logoutUser() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +21,21 @@ class ProfilePage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.black,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            onPressed: logoutUser,
+          ),
+        ],
       ),
       backgroundColor: Colors.black,
-      body: const Center(
-        child: Text('Profile Page', style: TextStyle(color: Colors.white)),
+      body: Center(
+        child: Text(
+          "Profile Page: ${user.email!}",
+          style: const TextStyle(
+              color: Colors.white
+          )
+        ),
       ),
     );
   }
