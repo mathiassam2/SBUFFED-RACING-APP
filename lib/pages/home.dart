@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
               firstName: 'Julian',
               lastName: 'Nelson',
               pos: '01',
-              pts: '41',
+              pts: '40',
               driverImagePath: 'assets/images/drivers/julian_nelson.png',
               teamColor: '#F7DA1B',
               teamImagePath: 'assets/images/constructors/renault.png',
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
               ),
               showSeeMore: true, // Show "See more"
             ),
-            const CustomCard(
+            const StandingsCard(
               title: 'Card Title 3',
               description:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
@@ -92,11 +92,11 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class CustomCard extends StatelessWidget {
+class StandingsCard extends StatelessWidget {
   final String title;
   final String description;
 
-  const CustomCard({super.key, required this.title, required this.description});
+  const StandingsCard({super.key, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
