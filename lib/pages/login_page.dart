@@ -1,17 +1,53 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final email = TextEditingController();
   final password = TextEditingController();
 
-  void loginUser() async{
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+  bool _hasError = false;
+  String _errorMessage = '';
+
+  void loginUser() async {
+    // Show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      // Try sign in
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email.text,
         password: password.text,
-    );
+      );
+      setState(() {
+        _hasError = false;
+        _errorMessage = '';
+      });
+    } on FirebaseAuthException catch (e) {
+      // Handle sign-in error
+      setState(() {
+        _hasError = true;
+        _errorMessage = 'Bad credentials';
+      });
+    } finally {
+      // Pop the loading circle only if the widget is still mounted
+      if (mounted) {
+        Navigator.pop(context);
+      }
+    }
   }
 
   @override
@@ -25,6 +61,20 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              AnimatedSlide(
+                offset: _hasError ? Offset.zero : const Offset(0, -1),
+                duration: const Duration(milliseconds: 300),
+                child: Text(
+                  _errorMessage,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
               const Text(
                 'Welcome Back',
                 textAlign: TextAlign.center,
@@ -45,7 +95,9 @@ class LoginPage extends StatelessWidget {
                   fillColor: Colors.white10,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
+                    borderSide: _hasError
+                        ? const BorderSide(color: Colors.red, width: 2.0)
+                        : BorderSide.none,
                   ),
                 ),
               ),
@@ -61,7 +113,9 @@ class LoginPage extends StatelessWidget {
                   fillColor: Colors.white10,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
+                    borderSide: _hasError
+                        ? const BorderSide(color: Colors.red, width: 2.0)
+                        : BorderSide.none,
                   ),
                 ),
               ),
