@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "757341902860",
+    "project_id": "sbuffed-racing-app",
+    "storage_bucket": "sbuffed-racing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757341902860:android:1628a8fb886deaa4f47629",
+        "android_client_info": {
+          "package_name": "com.sbuffed.first_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_U6mtXomtEd8Dxcm-CTe9wHG62yhu_p8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757341902860:android:499824f963d53239f47629",
+        "android_client_info": {
+          "package_name": "my.sbuffed.first_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_U6mtXomtEd8Dxcm-CTe9wHG62yhu_p8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
