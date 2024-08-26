@@ -39,10 +39,14 @@ class _LoginPageState extends State<LoginPage> {
         _errorMessage = '';
       });
     } on FirebaseAuthException catch (e) {
-      // Handle sign-in error
       setState(() {
-        _hasError = true;
-        _errorMessage = 'Bad credentials';
+        if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+          _hasError = true;
+          _errorMessage = 'Bad credentials';
+        } else {
+          _hasError = true;
+          _errorMessage = 'Server error';
+        }
       });
     } finally {
       // Pop the loading circle only if the widget is still mounted
