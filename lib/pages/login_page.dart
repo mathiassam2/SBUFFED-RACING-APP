@@ -20,7 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   bool _hasError = false;
-  String _errorMessage = '';
 
   @override
   void dispose() {
@@ -50,16 +49,13 @@ class _LoginPageState extends State<LoginPage> {
       );
       setState(() {
         _hasError = false;
-        _errorMessage = '';
       });
     } on FirebaseAuthException catch (e) {
       setState(() {
         if (e.code == 'wrong-password' || e.code == 'user-not-found') {
           _hasError = true;
-          _errorMessage = 'Bad credentials';
         } else {
           _hasError = true;
-          _errorMessage = 'Server error';
         }
       });
     } finally {
@@ -89,8 +85,10 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const SizedBox(height: 100.0), // Padding from top
                     _buildLogo(),
-                    const SizedBox(height: 25.0), // Space between logo and form
-                    _buildErrorMessage(),
+                    const SizedBox(height: 25.0), // Space between logo and texts
+                    _buildWelcomeText(),
+                    const SizedBox(height: 0.0), // Small space between the texts
+                    _buildAccountDetailsText(),
                     const SizedBox(height: 16.0),
                     _buildGoogleSignInButton(), // Add Google sign-in button
                     _buildOrSeparator(), // Add OR separator
@@ -111,6 +109,32 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget _buildWelcomeText() {
+    return const Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        'Welcome to SBUFFED!',
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.white, // Adjust color as needed
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAccountDetailsText() {
+    return const Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        'Enter your account details',
+        style: TextStyle(
+          fontSize: 14.0,
+          color: Color(0xFFC2C2C4), // Adjust color as needed
+        ),
+      ),
+    );
+  }
 
   Widget _buildOrSeparator() {
     return Container(
@@ -220,22 +244,6 @@ class _LoginPageState extends State<LoginPage> {
         'assets/images/app_logo/sbuffed_text_logo.png',
         height: 100.0,
         width: 300.0,
-      ),
-    );
-  }
-
-  Widget _buildErrorMessage() {
-    return AnimatedSlide(
-      offset: _hasError ? Offset.zero : const Offset(0, -1),
-      duration: const Duration(milliseconds: 300),
-      child: Text(
-        _errorMessage,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.red,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
       ),
     );
   }
