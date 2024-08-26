@@ -1,5 +1,12 @@
+import 'package:first_app/services/auth_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+const List<String> scopes = <String>[
+  'email',
+  'https://www.googleapis.com/auth/contacts.readonly',
+];
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -143,9 +150,37 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildGoogleSignInButton() {
+    Future<void> handleSignIn() async {
+      // Show the loading dialog
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFF7DA1B)),
+            ),
+          );
+        },
+      );
+
+      try {
+        // Attempt to sign in
+        await AuthService().signInWithGoogle();
+      } catch (error) {
+        if (kDebugMode) {
+          print(error);
+        }
+      } finally {
+        // Pop the loading dialog
+        if (mounted) {
+          Navigator.pop(context);
+        }
+      }
+    }
     return ElevatedButton(
       onPressed: () {
-        // Implement Google sign-in functionality here
+        // Call the handleSignIn function here
+        handleSignIn();
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.transparent, // Transparent background
@@ -177,6 +212,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
 
   Widget _buildLogo() {
     return Center(
