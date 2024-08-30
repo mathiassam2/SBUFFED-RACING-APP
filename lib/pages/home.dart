@@ -4,6 +4,8 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'driver_detail.dart';
 import 'events.dart'; // Import the Events page
 import 'championship.dart'; // Import the Championship page
+import 'merchandise.dart';  // Import the Merch page
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -62,11 +64,19 @@ class HomePage extends StatelessWidget {
               description:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
             ),
+            SectionRow(
+              title: 'SBUFFED Merchandise',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MerchandisePage()),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
 
   AppBar buildAppBar() {
     return AppBar(
@@ -162,7 +172,6 @@ class SectionRow extends StatelessWidget {
     );
   }
 }
-
 
 class DriverCard extends StatelessWidget {
   final String firstName;
