@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
               title: 'SBUFFED Merchandise',
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MerchandisePage()),
+                MaterialPageRoute(builder: (context) => const MerchandisePage()),
               ),
               showSeeMore: false,
             ),
@@ -209,7 +209,7 @@ class MerchandiseCard extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MerchandisePage()),
+                  MaterialPageRoute(builder: (context) => const MerchandisePage()),
                 );
               },
               child: ClipRRect(
