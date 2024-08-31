@@ -73,6 +73,7 @@ flutter:
         - assets/images/constructors/
         - assets/images/drivers/
         - assets/images/misc/
+        - assets/images/merch/
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/to/resolution-aware-images

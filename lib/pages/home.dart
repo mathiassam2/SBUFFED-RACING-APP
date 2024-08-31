@@ -60,9 +60,12 @@ class HomePage extends StatelessWidget {
               showSeeMore: true, // Show "See more"
             ),
             const StandingsCard(
-              title: 'Card Title 3',
+              title: 'Upcoming Race Info',
               description:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
+              'Next up: The Serapi Grand Prix. Can Julian Nelson maintain his lead? Catch all the action on September 7th!',
+            ),
+            const StandingsCard(
+                title: 'Driver Standings', description: '"Julian Nelson leads the championship with 40 points, followed by Isaac Anderson and Matrix Saul."'
             ),
             SectionRow(
               title: 'SBUFFED Merchandise',
@@ -70,7 +73,14 @@ class HomePage extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => MerchandisePage()),
               ),
+              showSeeMore: false,
             ),
+            const MerchandiseCard(
+              title: 'SBUFFED Merchandise',
+              description: 'Explore our exclusive range of merchandise items.',
+              merchImage: 'assets/images/merch/sbuffed_merch.png', // Pass the image path
+            ),
+            const SizedBox(height: 300), // Just to ensure there's more content to scroll
           ],
         ),
       ),
@@ -172,6 +182,70 @@ class SectionRow extends StatelessWidget {
     );
   }
 }
+class MerchandiseCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final String merchImage;
+
+  const MerchandiseCard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.merchImage,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color.fromARGB(255, 29, 29, 29),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: SizedBox(
+        height: 245.0,
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MerchandisePage()),
+                );
+              },
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
+                child: Image.asset(
+                  merchImage,  // Display the merchandise image
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 140.0,  // Adjust the height as needed
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                title: Text(
+                  title,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+                subtitle: Text(
+                  description,
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 class DriverCard extends StatelessWidget {
   final String firstName;
